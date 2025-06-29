@@ -1,4 +1,4 @@
-package com.awesomepizzasrl.client;
+package com.awesomepizzasrl.platform;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

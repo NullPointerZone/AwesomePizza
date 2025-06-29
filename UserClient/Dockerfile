@@ -1,4 +1,10 @@
-FROM ubuntu:latest
-LABEL authors="Salvo"
+FROM amazoncorretto:21-alpine
 
-ENTRYPOINT ["top", "-b"]
+#Copy project jar
+WORKDIR /app
+COPY target/app.jar app.jar
+
+#Expose rest port
+EXPOSE 8080
+
+ENTRYPOINT ["java", "-jar", "app.jar"]

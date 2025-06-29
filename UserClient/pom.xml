@@ -30,16 +30,31 @@
 		<java.version>21</java.version>
 	</properties>
 	<dependencies>
+		<!-- PROD -->
+			<!-- REST CONTROLLER -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
+			<!-- INTEGRATION -->
+		<dependency>
+			<groupId>org.eclipse.paho</groupId>
+			<artifactId>org.eclipse.paho.mqttv5.client</artifactId>
+			<version>1.2.5</version>
+		</dependency>
+		<dependency>
+			<groupId>com.awesomepizzasrl</groupId>
+			<artifactId>event-model</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+			<!-- UTILITY -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
+
+		<!-- TEST -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
