@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: Client
+
+mqtt:
+  broker-url: tcp://mosquitto:1883
+  client-id: AwesomePizza
+  username: user
+  password: user
+  publish-qos: 1
+  order-topic: order

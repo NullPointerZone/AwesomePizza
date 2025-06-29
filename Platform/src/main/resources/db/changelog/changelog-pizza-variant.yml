@@ -1,0 +1,15 @@
+databaseChangeLog:
+  - changeSet:
+      id: 3
+      author: scardamone
+      changes:
+        - createTable:
+            tableName: pizza_variant
+            schemaName: public
+            columns:
+              - column:
+                  name: pizza_type
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+                    unique: true

@@ -9,6 +9,8 @@ public class CreateOrder {
     private String username;
     private List<Pizza> pizzas;
 
+    public CreateOrder(){}
+
     public CreateOrder(UUID idOrder, String username, List<Pizza> pizzas) {
         this.idOrder = idOrder;
         this.username = username;

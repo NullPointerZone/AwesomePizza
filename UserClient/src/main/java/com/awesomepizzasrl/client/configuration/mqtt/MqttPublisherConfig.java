@@ -8,6 +8,7 @@ import org.eclipse.paho.mqttv5.common.MqttException;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.nio.charset.StandardCharsets;
 import java.util.UUID;
 
 @Configuration
@@ -23,6 +24,8 @@ public class MqttPublisherConfig {
         options.setCleanStart(true);
         options.setAutomaticReconnect(true);
         options.setConnectionTimeout(30);
+        options.setUserName(properties.getUsername());
+        options.setPassword(properties.getPassword().getBytes(StandardCharsets.UTF_8));
         return options;
     }
 

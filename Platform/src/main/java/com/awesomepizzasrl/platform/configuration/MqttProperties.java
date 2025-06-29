@@ -1,4 +1,4 @@
-package com.awesomepizzasrl.client.configuration.mqtt;
+package com.awesomepizzasrl.platform.configuration;
 
 import lombok.Getter;
 import lombok.Setter;

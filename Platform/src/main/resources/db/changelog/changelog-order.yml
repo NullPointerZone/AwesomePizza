@@ -1,0 +1,20 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: scardamone
+      changes:
+        - createTable:
+            tableName: order
+            schemaName: public
+            columns:
+              - column:
+                  name: idOrder
+                  type: UUID
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: username
+                  type: varchar(255)
+                  constraints:
+                    nullable: false

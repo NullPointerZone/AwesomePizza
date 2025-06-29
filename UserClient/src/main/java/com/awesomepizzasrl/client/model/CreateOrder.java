@@ -20,12 +20,12 @@ public class CreateOrder {
     private List<Pizza> pizzas;
 
     public void validate() {
-        if(username == null) {
+        if(username == null || username.isBlank()) {
             throw new RequestException(HttpStatus.BAD_REQUEST, USERNAME_ERROR);
         } else if (pizzas == null || pizzas.isEmpty()) {
             throw new RequestException(HttpStatus.BAD_REQUEST, PIZZA_ERROR);
         }else {
-            if (pizzas.stream().anyMatch(p -> p.getQuantity() < 0 || p.getType() == null || p.getType().isBlank())) {
+            if (pizzas.stream().anyMatch(p -> p.getQuantity() <= 0 || p.getType() == null || p.getType().isBlank())) {
                 throw  new RequestException(HttpStatus.BAD_REQUEST, PIZZA_ERROR);
             }
         }
