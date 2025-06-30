@@ -1,5 +1,6 @@
 package com.awesomepizzasrl.platform.db.entity;
 
+import com.awesomepizzasrl.platform.model.OrderStatus;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -11,7 +12,8 @@ import java.util.UUID;
 @Getter
 @Setter
 @AllArgsConstructor
-public class Order {
+@NoArgsConstructor
+public class OrderEntity {
 
     @Id
     @Column(name = "idOrder", nullable = false, unique = true)
@@ -20,6 +22,10 @@ public class Order {
     @Column(name = "username", nullable = false)
     private String username;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<OrderPizza> pizzas;
+    @Column(name = "status", nullable = false)
+    @Enumerated(EnumType.STRING)
+    OrderStatus status;
+
+    @OneToMany(mappedBy = "orderEntity", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<OrderPizzaEntity> pizzas;
 }

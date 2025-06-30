@@ -1,4 +1,4 @@
-package com.awesomepizzasrl.client.mapper;
+package com.awesomepizzasrl.client.service.mapper;
 
 import com.awesomepizzasrl.client.model.CreateOrder;
 import com.awesomepizzasrl.client.model.Pizza;

@@ -11,6 +11,7 @@ databaseChangeLog:
                   name: id
                   type: UUID
                   constraints:
+                    primaryKey: true
                     nullable: false
               - column:
                   name: idOrder

@@ -9,19 +9,20 @@ import java.util.UUID;
 @Getter
 @Setter
 @AllArgsConstructor
-public class OrderPizza {
+@NoArgsConstructor
+public class OrderPizzaEntity {
 
     @Id
     @Column(name = "id", nullable = false, unique = true)
     private UUID id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "idOrder", nullable = false)
-    private Order order;
+    @Column(name = "pizza_variant", nullable = false)
+    private String pizzaVariant;
 
     @Column(name = "quantity", nullable = false)
     private int quantity;
 
-    @Column(name = "pizza_variant", nullable = false)
-    private String pizzaVariant;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "idOrder", nullable = false)
+    private OrderEntity orderEntity;
 }

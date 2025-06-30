@@ -1,7 +1,7 @@
 package com.awesomepizzasrl.client.service;
 
 import com.awesomepizzasrl.client.configuration.mqtt.MqttProperties;
-import com.awesomepizzasrl.client.mapper.OrderMapper;
+import com.awesomepizzasrl.client.service.mapper.OrderMapper;
 import com.awesomepizzasrl.client.model.CreateOrder;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

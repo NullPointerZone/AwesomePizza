@@ -1,12 +1,6 @@
 package com.awesomepizzasrl.platform.controller;
 
-
-import awesomepizzasrl.eventmodel.model.CreateOrder;
-import com.awesomepizzasrl.platform.service.mapper.CreateOrderDtoMapper;
-import com.awesomepizzasrl.platform.service.dto.CreateOrderDto;
-import com.awesomepizzasrl.platform.model.OrderStatus;
-import com.awesomepizzasrl.platform.service.OrderService;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.awesomepizzasrl.platform.service.PizzachefService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.eclipse.paho.mqttv5.client.IMqttToken;
@@ -18,26 +12,23 @@ import org.eclipse.paho.mqttv5.common.packet.MqttProperties;
 import org.springframework.stereotype.Controller;
 
 import java.nio.charset.StandardCharsets;
+import java.util.UUID;
 
 @Controller
 @Slf4j
 @RequiredArgsConstructor
-public class OrderController implements MqttCallback {
+public class PizzachefController implements MqttCallback {
 
-    private final OrderService orderService;
-    private final CreateOrderDtoMapper createOrderDtoMapper;
-    private final ObjectMapper objectMapper = new ObjectMapper();
+    private final PizzachefService pizzachefService;
 
     @Override
     public void messageArrived(String topic, MqttMessage message) {
         try {
-            String payload = new String(message.getPayload());
-            log.info("Received message on topic {}: {}", topic, payload);
-            CreateOrder createOrder = objectMapper.readValue(payload, CreateOrder.class);
-            CreateOrderDto dto = createOrderDtoMapper.map(createOrder, OrderStatus.PENDING);
-            orderService.processOrder(dto);
+            UUID orderId = UUID.fromString(new String(message.getPayload(), StandardCharsets.UTF_8));
+            log.info("Received order ID: {} from topic {}", orderId, topic);
+            pizzachefService.processOrder(orderId);
         } catch (Exception e) {
-            log.error("{}", new String(message.getPayload(), StandardCharsets.UTF_8), e);
+            log.error("Invalid UUID payload: {}", new String(message.getPayload(), StandardCharsets.UTF_8), e);
         }
     }
 

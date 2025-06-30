@@ -17,4 +17,5 @@ public class MqttProperties {
     private int publishQos;
     private String username;
     private String password;
+    private String pizzachefTopic;
 }

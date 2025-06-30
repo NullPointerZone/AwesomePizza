@@ -16,3 +16,4 @@ mqtt:
   password: user
   publish-qos: 1
   order-topic: order
+  pizzachef-topic: pizzachef

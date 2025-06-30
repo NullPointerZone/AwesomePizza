@@ -5,7 +5,7 @@ import org.springframework.http.HttpStatusCode;
 
 @Getter
 public class RequestException extends RuntimeException{
-    private HttpStatusCode code;
+    private final HttpStatusCode code;
     private final Object body;
 
     public RequestException(HttpStatusCode code, Object body) {
