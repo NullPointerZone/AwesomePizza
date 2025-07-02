@@ -1,6 +1,7 @@
 package com.awesomepizzasrl.client.db.entity;
 
-import com.awesomepizzasrl.platform.model.OrderStatus;
+import awesomepizzasrl.eventmodel.model.OrderStatus;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,8 +19,8 @@ import java.util.UUID;
 public class OrderEntity {
 
     @Id
-    @Column(name = "idOrder", nullable = false, unique = true)
-    private UUID idOrder;
+    @Column(name = "id", nullable = false, unique = true)
+    private UUID id;
 
     @Column(name = "username", nullable = false)
     private String username;

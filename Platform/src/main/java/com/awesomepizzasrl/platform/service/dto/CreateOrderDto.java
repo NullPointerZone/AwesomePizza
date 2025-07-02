@@ -1,6 +1,6 @@
 package com.awesomepizzasrl.platform.service.dto;
 
-import com.awesomepizzasrl.platform.model.OrderStatus;
+import awesomepizzasrl.eventmodel.model.OrderStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 

@@ -4,7 +4,7 @@ package com.awesomepizzasrl.platform.controller;
 import awesomepizzasrl.eventmodel.model.CreateOrder;
 import com.awesomepizzasrl.platform.service.mapper.CreateOrderDtoMapper;
 import com.awesomepizzasrl.platform.service.dto.CreateOrderDto;
-import com.awesomepizzasrl.platform.model.OrderStatus;
+import awesomepizzasrl.eventmodel.model.OrderStatus;
 import com.awesomepizzasrl.platform.service.OrderService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;

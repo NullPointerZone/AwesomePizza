@@ -8,6 +8,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @RestController
 @RequestMapping("/order")
 @RequiredArgsConstructor
@@ -15,7 +17,6 @@ import org.springframework.web.bind.annotation.*;
 public class OrderController {
 
     private final OrderService orderService;
-
 
     @PostMapping
     public ResponseEntity<?> createOrder(@RequestBody CreateOrder order) {
@@ -37,22 +38,41 @@ public class OrderController {
         }
     }
 
-    //TODO
-//    @GetMapping("/list")
-//    public ResponseEntity<String> getOrders(@RequestBody("user") Long orderId) {
-//        String status = orders.get(orderId);
-//        if (status == null) {
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
-//        return ResponseEntity.ok(status);
-//    }
-//
-//    @GetMapping("/status")
-//    public ResponseEntity<String> getOrderStatus(@RequestBody("orderId") Long orderId) {
-//        String status = orders.get(orderId);
-//        if (status == null) {
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
-//        return ResponseEntity.ok(status);
-//    }
+    @GetMapping("/list")
+    public ResponseEntity<?> getOrders(@RequestParam  String username) {
+        try {
+            return ResponseEntity
+                    .ok()
+                    .body(orderService.getOrders(username));
+        }catch (RequestException ex){
+            log.warn("Exception occurred for getOrders: {}", username, ex);
+            return ResponseEntity
+                    .status(ex.getCode())
+                    .body(ex.getBody());
+        }catch (Exception ex){
+            log.error("Exception for getOrders: {}", username, ex);
+            return ResponseEntity
+                    .status(500)
+                    .body("Unexpected server error");
+        }
+    }
+
+    @GetMapping("/status")
+    public ResponseEntity<?> getOrderStatus(@RequestParam  UUID orderId) {
+        try {
+            return ResponseEntity
+                    .ok()
+                    .body(orderService.getOrder(orderId));
+        }catch (RequestException ex){
+            log.warn("Exception occurred for getOrder: {}", orderId, ex);
+            return ResponseEntity
+                    .status(ex.getCode())
+                    .body(ex.getBody());
+        }catch (Exception ex){
+            log.error("Exception for getOrder: {}", orderId, ex);
+            return ResponseEntity
+                    .status(500)
+                    .body("Unexpected server error");
+        }
+    }
 }

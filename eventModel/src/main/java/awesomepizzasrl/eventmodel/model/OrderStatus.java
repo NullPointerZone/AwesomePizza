@@ -1,4 +1,4 @@
-package com.awesomepizzasrl.platform.model;
+package awesomepizzasrl.eventmodel.model;
 
 public enum OrderStatus {
     PENDING,

@@ -1,7 +1,7 @@
 package com.awesomepizzasrl.platform.db.repository;
 
 import com.awesomepizzasrl.platform.db.entity.OrderEntity;
-import com.awesomepizzasrl.platform.model.OrderStatus;
+import awesomepizzasrl.eventmodel.model.OrderStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -15,6 +15,6 @@ public interface OrderRepository extends JpaRepository<OrderEntity, UUID> {
 
     @Transactional
     @Modifying
-    @Query("update OrderEntity o set o.status = ?1 where o.idOrder = ?2")
-    int updateStatusByIdOrder(OrderStatus status, UUID idOrder);
+    @Query("update OrderEntity o set o.status = ?1 where o.id = ?2")
+    int updateStatusById(OrderStatus status, UUID idOrder);
 }

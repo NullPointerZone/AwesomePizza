@@ -5,8 +5,8 @@ databaseChangeLog:
       changes:
         - addForeignKeyConstraint:
             baseTableName: order_pizza
-            baseColumnNames: idOrder
+            baseColumnNames: id_order
             constraintName: fk_orderpizza_order
             referencedTableName: order
-            referencedColumnNames: idOrder
+            referencedColumnNames: id
             onDelete: CASCADE

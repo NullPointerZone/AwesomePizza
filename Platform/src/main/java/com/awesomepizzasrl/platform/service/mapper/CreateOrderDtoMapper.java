@@ -2,7 +2,7 @@ package com.awesomepizzasrl.platform.service.mapper;
 
 import awesomepizzasrl.eventmodel.model.CreateOrder;
 import com.awesomepizzasrl.platform.service.dto.CreateOrderDto;
-import com.awesomepizzasrl.platform.model.OrderStatus;
+import awesomepizzasrl.eventmodel.model.OrderStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

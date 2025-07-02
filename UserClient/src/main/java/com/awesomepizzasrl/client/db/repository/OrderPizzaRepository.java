@@ -1,6 +1,6 @@
 package com.awesomepizzasrl.client.db.repository;
 
-import com.awesomepizzasrl.platform.db.entity.OrderPizzaEntity;
+import com.awesomepizzasrl.client.db.entity.OrderPizzaEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

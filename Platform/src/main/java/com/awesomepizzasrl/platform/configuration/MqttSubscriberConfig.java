@@ -1,6 +1,7 @@
 package com.awesomepizzasrl.platform.configuration;
 
 import com.awesomepizzasrl.platform.controller.OrderController;
+import com.awesomepizzasrl.platform.controller.PizzachefController;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.eclipse.paho.mqttv5.client.MqttAsyncClient;
@@ -19,6 +20,7 @@ public class MqttSubscriberConfig {
 
     private final MqttProperties properties;
     private final OrderController orderController;
+    private final PizzachefController pizzachefController;
 
     @Bean(name = "subscriberConnectionOptions")
     public MqttConnectionOptions subscriberConnectionOptions() {
@@ -58,7 +60,7 @@ public class MqttSubscriberConfig {
         client.connect(subscriberConnectionOptions).waitForCompletion();
         log.info("Connected MQTT Subscriber: {}", clientId);
 
-        client.setCallback(orderController);
+        client.setCallback(pizzachefController);
 
         String topic = properties.getPizzachefTopic();
         client.subscribe(topic, 1);

@@ -1,4 +1,4 @@
-package com.awesomepizzasrl.client.exception;
+package com.awesomepizzasrl.platform.exception;
 
 import lombok.Getter;
 import org.springframework.http.HttpStatusCode;

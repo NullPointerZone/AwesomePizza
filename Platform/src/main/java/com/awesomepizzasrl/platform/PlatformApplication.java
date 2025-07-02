@@ -2,6 +2,8 @@ package com.awesomepizzasrl.platform;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+
 /**
  * Come pizzeria "Awesome Pizza" voglio creare il mio nuovo portale per gestire gli ordini dei miei clienti.
  * Il portale non richiede la registrazione dell'utente per poter ordinare le sue pizze.
@@ -15,6 +17,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * Decidiamo di progettare anche i test di unità sul codice oggetto di sviluppo.
  */
 @SpringBootApplication
+@EnableTransactionManagement
 public class PlatformApplication {
 
 	public static void main(String[] args) {

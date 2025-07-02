@@ -1,21 +1,34 @@
 package com.awesomepizzasrl.client.controller;
 
-import org.springframework.http.HttpStatus;
+
+import com.awesomepizzasrl.client.service.PizzaService;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@RequestMapping("/pizza")
+@RestController
+@RequestMapping("pizza")
+@RequiredArgsConstructor
+@Slf4j
 public class PizzaController {
 
-    //TODO
-//    @GetMapping("/list")
-//    public ResponseEntity<String> getPizzaList() {
-//        String status = orders.get(orderId);
-//        if (status == null) {
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
-//        return ResponseEntity.ok(status);
-//    }
+    private final PizzaService pizzaService;
+
+    @GetMapping
+    public ResponseEntity<?> getPizzaList() {
+        try {
+            return ResponseEntity
+                    .ok()
+                    .body(pizzaService.getVariants());
+        }catch (Exception ex){
+            log.error("", ex);
+            return ResponseEntity
+                    .status(500)
+                    .body("Unexpected server error");
+        }
+    }
 
 }

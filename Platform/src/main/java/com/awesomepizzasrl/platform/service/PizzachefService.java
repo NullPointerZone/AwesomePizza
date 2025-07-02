@@ -18,7 +18,7 @@ public class PizzachefService {
         log.info("Order {} received: changing status to IN_PROGRESS", orderId);
         try {
             log.info("Preparing order {}...", orderId);
-            Thread.sleep(5 * 60 * 1000);
+            Thread.sleep(1 * 60 * 1000);
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
             log.warn("Interrupted during preparation delay for order {}", orderId);

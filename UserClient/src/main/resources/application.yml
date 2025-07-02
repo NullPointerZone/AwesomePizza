@@ -1,6 +1,10 @@
 spring:
   application:
     name: Client
+  datasource:
+    url: jdbc:postgresql://localhost:5432/pizza_db
+    username: user
+    password: user
 
 mqtt:
   broker-url: tcp://mosquitto:1883

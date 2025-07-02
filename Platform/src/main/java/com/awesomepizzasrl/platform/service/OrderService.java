@@ -5,7 +5,6 @@ import com.awesomepizzasrl.platform.db.entity.PizzaVariantEntity;
 import com.awesomepizzasrl.platform.db.mapper.OrderEntityMapper;
 import com.awesomepizzasrl.platform.db.repository.OrderRepository;
 import com.awesomepizzasrl.platform.db.repository.PizzaVariantRepository;
-import com.awesomepizzasrl.platform.model.OrderStatus;
 import com.awesomepizzasrl.platform.service.dto.CreateOrderDto;
 import com.awesomepizzasrl.platform.service.validation.OrderValidator;
 import jakarta.transaction.Transactional;
@@ -14,6 +13,7 @@ import org.eclipse.paho.mqttv5.common.MqttException;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -49,9 +49,10 @@ public class OrderService {
 
             orderValidator.validate(order, pizzaTypes);
             orderRepository.save(orderEntityMapper.map(order));
-            mqttAsyncClient.publish(mqttProperties.getPizzachefTopic(), order.getIdOrder().toString().getBytes(), 1, false);
+            mqttAsyncClient.publish(mqttProperties.getPizzachefTopic(),  order.getIdOrder().toString().getBytes(StandardCharsets.UTF_8), 1, false);
         }catch (Exception ex){
             orderStateManager.setOrderDeclined(order.getIdOrder());
+            throw ex;
         }
     }
 }

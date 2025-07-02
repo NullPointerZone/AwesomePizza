@@ -23,6 +23,6 @@ public class OrderPizzaEntity {
     private int quantity;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "idOrder", nullable = false)
+    @JoinColumn(name = "id_order", nullable = false)
     private OrderEntity orderEntity;
 }
