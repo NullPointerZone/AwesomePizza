@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.awesomepizzasrl</groupId>
 	<artifactId>client</artifactId>
-	<version>0.0.2-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>Client</name>
 	<description>Client application for placing orders with Awesome Pizza.</description>
 	<url/>
@@ -54,7 +54,7 @@
 		<dependency>
 			<groupId>com.awesomepizzasrl</groupId>
 			<artifactId>event-model</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>1.0.0</version>
 		</dependency>
 			<!-- UTILITY -->
 		<dependency>
