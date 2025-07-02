@@ -1,0 +1,28 @@
+package com.awesomepizzasrl.platform.db.entity;
+
+import jakarta.persistence.*;
+import lombok.*;
+import java.util.UUID;
+
+@Entity
+@Table(name = "order_pizza", schema = "public")
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+public class OrderPizzaEntity {
+
+    @Id
+    @Column(name = "id", nullable = false, unique = true)
+    private UUID id;
+
+    @Column(name = "pizza_variant", nullable = false)
+    private String pizzaVariant;
+
+    @Column(name = "quantity", nullable = false)
+    private int quantity;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_order", nullable = false)
+    private OrderEntity orderEntity;
+}
