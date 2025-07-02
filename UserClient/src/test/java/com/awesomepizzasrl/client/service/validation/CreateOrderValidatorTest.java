@@ -102,7 +102,6 @@ class CreateOrderValidatorTest {
     void validate_whenPizzaHasBlankType_thenThrowRequestException() {
         CreateOrder order = new CreateOrder();
         order.setUsername("user");
-        // Assuming Pizza type is String, if not adapt accordingly
         order.setPizzas(List.of(new Pizza("", 1)));
 
         RequestException ex = assertThrows(RequestException.class, () -> validator.validate(order));

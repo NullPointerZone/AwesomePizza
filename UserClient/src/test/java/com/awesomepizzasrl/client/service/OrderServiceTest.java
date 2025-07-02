@@ -61,7 +61,6 @@ class OrderServiceTest {
         when(mqttProperties.getPublishQos()).thenReturn(1);
         when(mqttProperties.getOrderTopic()).thenReturn("order");
 
-        // doNothing su validate
         doNothing().when(createOrderValidator).validate(request);
 
         ArgumentCaptor<MqttMessage> messageCaptor = ArgumentCaptor.forClass(MqttMessage.class);
