@@ -1,0 +1,9 @@
+databaseChangeLog:
+  - include:
+      file: db/changelog/changelog-order.yml
+  - include:
+      file: db/changelog/changelog-pizza.yml
+  - include:
+      file: db/changelog/changelog-relation.yml
+  - include:
+      file: db/changelog/changelog-pizza-variant.yml

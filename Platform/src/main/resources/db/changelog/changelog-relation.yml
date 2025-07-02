@@ -1,0 +1,12 @@
+databaseChangeLog:
+  - changeSet:
+      id: 3
+      author: scardamone
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: order_pizza
+            baseColumnNames: id_order
+            constraintName: fk_orderpizza_order
+            referencedTableName: order
+            referencedColumnNames: id
+            onDelete: CASCADE

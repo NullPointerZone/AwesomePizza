@@ -1,0 +1,52 @@
+version: "3.9"
+
+services:
+  client:
+    build:
+      context: ./UserClient
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8080"
+    depends_on:
+      - postgres
+      - mosquitto
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/pizza-db
+      - MQTT_BROKER_URL=tcp://mosquitto:1883
+
+  platform:
+    build:
+      context: ./platform
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+      - mosquitto
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/pizza-db
+      - MQTT_BROKER_URL=tcp://mosquitto:1883
+
+  mosquitto:
+    image: eclipse-mosquitto:2.0
+    ports:
+      - "1883:1883"
+    volumes:
+      - ./mosquitto/config:/mosquitto/config
+      - ./mosquitto/data:/mosquitto/
+    restart: unless-stopped
+
+  postgres:
+    image: postgres:15-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: pizza-db
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: user
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
