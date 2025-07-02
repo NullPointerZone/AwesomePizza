@@ -8,6 +8,7 @@ import com.awesomepizzasrl.client.service.dto.OrderDto;
 import com.awesomepizzasrl.client.service.mapper.OrderDtoMapper;
 import com.awesomepizzasrl.client.service.mapper.OrderMapper;
 import com.awesomepizzasrl.client.model.CreateOrder;
+import com.awesomepizzasrl.client.service.validation.CreateOrderValidator;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.eclipse.paho.mqttv5.client.MqttAsyncClient;
@@ -31,20 +32,22 @@ public class OrderService {
     private final MqttProperties mqttProperties;
     private final OrderRepository orderRepository;
     private final OrderDtoMapper orderDtoMapper;
+    private final CreateOrderValidator createOrderValidator;
 
     @Autowired
-    public OrderService(OrderMapper mapper, @Qualifier("mqttPublisherClient") MqttAsyncClient mqttPublisher, MqttProperties mqttProperties, OrderRepository orderRepository, OrderDtoMapper orderDtoMapper) {
+    public OrderService(OrderMapper mapper, @Qualifier("mqttPublisherClient") MqttAsyncClient mqttPublisher, MqttProperties mqttProperties, OrderRepository orderRepository, OrderDtoMapper orderDtoMapper, CreateOrderValidator createOrderValidator) {
         this.mapper = mapper;
         this.mqttPublisher = mqttPublisher;
         this.mqttProperties = mqttProperties;
         this.orderRepository = orderRepository;
         this.orderDtoMapper = orderDtoMapper;
+        this.createOrderValidator = createOrderValidator;
     }
 
     public UUID createOrder(CreateOrder request) throws JsonProcessingException, MqttException {
-        request.validate();
-        awesomepizzasrl.eventmodel.model.CreateOrder createOrder = mapper.toCreateOrder(request);
+        createOrderValidator.validate(request);
 
+        awesomepizzasrl.eventmodel.model.CreateOrder createOrder = mapper.toCreateOrder(request);
         String payload = new ObjectMapper().writeValueAsString(createOrder);
         MqttMessage message = new MqttMessage(payload.getBytes(StandardCharsets.UTF_8));
         message.setQos(mqttProperties.getPublishQos());
